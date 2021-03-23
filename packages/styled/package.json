@@ -1,6 +1,6 @@
 {
-  "name": "@emotion/styled",
-  "version": "11.1.5",
+  "name": "@bumbag/emotion-styled",
+  "version": "11.1.5-0",
   "description": "styled API for emotion",
   "main": "dist/emotion-styled.cjs.js",
   "module": "dist/emotion-styled.esm.js",

@@ -52,7 +52,7 @@ let createCache = (options: Options): EmotionCache => {
     )
   }
 
-  if (isBrowser && key === 'css') {
+  if (isBrowser && key === 'css' && document.querySelectorAll) {
     const ssrStyles = document.querySelectorAll(
       `style[data-emotion]:not([data-s])`
     )
@@ -81,22 +81,24 @@ let createCache = (options: Options): EmotionCache => {
   if (isBrowser) {
     container = options.container || ((document.head: any): HTMLHeadElement)
 
-    Array.prototype.forEach.call(
-      document.querySelectorAll(`style[data-emotion]`),
-      (node: HTMLStyleElement) => {
-        const attrib = ((node.getAttribute(`data-emotion`): any): string).split(
-          ' '
-        )
-        if (attrib[0] !== key) {
-          return
+    if (document.querySelectorAll) {
+      Array.prototype.forEach.call(
+        document.querySelectorAll(`style[data-emotion]`),
+        (node: HTMLStyleElement) => {
+          const attrib = ((node.getAttribute(
+            `data-emotion`
+          ): any): string).split(' ')
+          if (attrib[0] !== key) {
+            return
+          }
+          // $FlowFixMe
+          for (let i = 1; i < attrib.length; i++) {
+            inserted[attrib[i]] = true
+          }
+          nodesToHydrate.push(node)
         }
-        // $FlowFixMe
-        for (let i = 1; i < attrib.length; i++) {
-          inserted[attrib[i]] = true
-        }
-        nodesToHydrate.push(node)
-      }
-    )
+      )
+    }
   }
 
   let insert: (
