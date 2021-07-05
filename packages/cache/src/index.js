@@ -52,7 +52,7 @@ let createCache = (options: Options): EmotionCache => {
     )
   }
 
-  if (isBrowser && key === 'css') {
+  if (isBrowser && key === 'css' && document.querySelectorAll) {
     const ssrStyles = document.querySelectorAll(
       `style[data-emotion]:not([data-s])`
     )
@@ -97,21 +97,23 @@ let createCache = (options: Options): EmotionCache => {
   if (isBrowser) {
     container = options.container || ((document.head: any): HTMLHeadElement)
 
-    Array.prototype.forEach.call(
-      // this means we will ignore elements which don't have a space in them which
-      // means that the style elements we're looking at are only Emotion 11 server-rendered style elements
-      document.querySelectorAll(`style[data-emotion^="${key} "]`),
-      (node: HTMLStyleElement) => {
-        const attrib = ((node.getAttribute(`data-emotion`): any): string).split(
-          ' '
-        )
-        // $FlowFixMe
-        for (let i = 1; i < attrib.length; i++) {
-          inserted[attrib[i]] = true
+    if (document.querySelectorAll) {
+      Array.prototype.forEach.call(
+        // this means we will ignore elements which don't have a space in them which
+        // means that the style elements we're looking at are only Emotion 11 server-rendered style elements
+        document.querySelectorAll(`style[data-emotion^="${key} "]`),
+        (node: HTMLStyleElement) => {
+          const attrib = ((node.getAttribute(
+            `data-emotion`
+          ): any): string).split(' ')
+          // $FlowFixMe
+          for (let i = 1; i < attrib.length; i++) {
+            inserted[attrib[i]] = true
+          }
+          nodesToHydrate.push(node)
         }
-        nodesToHydrate.push(node)
-      }
-    )
+      )
+    }
   }
 
   let insert: (

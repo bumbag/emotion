@@ -1,9 +1,9 @@
 {
-  "name": "@emotion/styled",
-  "version": "11.3.0",
+  "name": "@bumbag/emotion-styled",
+  "version": "11.3.0-0",
   "description": "styled API for emotion",
-  "main": "dist/emotion-styled.cjs.js",
-  "module": "dist/emotion-styled.esm.js",
+  "main": "dist/bumbag-emotion-styled.cjs.js",
+  "module": "dist/bumbag-emotion-styled.esm.js",
   "types": "types/index.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/main/packages/styled",
@@ -48,11 +48,7 @@
     "macro.js",
     "macro.js.flow"
   ],
-  "umd:main": "dist/emotion-styled.umd.min.js",
-  "browser": {
-    "./dist/emotion-styled.cjs.js": "./dist/emotion-styled.browser.cjs.js",
-    "./dist/emotion-styled.esm.js": "./dist/emotion-styled.browser.esm.js"
-  },
+  "umd:main": "dist/bumbag-emotion-styled.umd.min.js",
   "preconstruct": {
     "umdName": "emotionStyled",
     "entrypoints": [

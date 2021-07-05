@@ -132,26 +132,26 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         newProps.ref = ref
 
         const ele = React.createElement(finalTag, newProps)
-        if (!isBrowser && rules !== undefined) {
-          let serializedNames = serialized.name
-          let next = serialized.next
-          while (next !== undefined) {
-            serializedNames += ' ' + next.name
-            next = next.next
-          }
-          return (
-            <>
-              <style
-                {...{
-                  [`data-emotion`]: `${cache.key} ${serializedNames}`,
-                  dangerouslySetInnerHTML: { __html: rules },
-                  nonce: cache.sheet.nonce
-                }}
-              />
-              {ele}
-            </>
-          )
-        }
+        // if (!isBrowser && rules !== undefined) {
+        //   let serializedNames = serialized.name
+        //   let next = serialized.next
+        //   while (next !== undefined) {
+        //     serializedNames += ' ' + next.name
+        //     next = next.next
+        //   }
+        //   return (
+        //     <>
+        //       <style
+        //         {...{
+        //           [`data-emotion`]: `${cache.key} ${serializedNames}`,
+        //           dangerouslySetInnerHTML: { __html: rules },
+        //           nonce: cache.sheet.nonce
+        //         }}
+        //       />
+        //       {ele}
+        //     </>
+        //   )
+        // }
         return ele
       }
     )

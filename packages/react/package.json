@@ -1,12 +1,8 @@
 {
-  "name": "@emotion/react",
-  "version": "11.4.0",
-  "main": "dist/emotion-react.cjs.js",
-  "module": "dist/emotion-react.esm.js",
-  "browser": {
-    "./dist/emotion-react.cjs.js": "./dist/emotion-react.browser.cjs.js",
-    "./dist/emotion-react.esm.js": "./dist/emotion-react.browser.esm.js"
-  },
+  "name": "@bumbag/emotion-react",
+  "version": "11.4.0-0",
+  "main": "dist/bumbag-emotion-react.cjs.js",
+  "module": "dist/bumbag-emotion-react.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -27,7 +23,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.13.10",
-    "@emotion/cache": "^11.4.0",
+    "@emotion/cache": "npm:@bumbag/emotion-cache@11.4.0-1",
     "@emotion/serialize": "^1.0.2",
     "@emotion/sheet": "^1.0.1",
     "@emotion/utils": "^1.0.0",
@@ -48,7 +44,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
-    "@emotion/css": "11.1.3",
+    "@bumbag/emotion-css": "11.1.3",
     "@emotion/css-prettifier": "1.0.0",
     "@emotion/server": "11.4.0",
     "@emotion/styled": "11.3.0",
@@ -62,7 +58,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "umd:main": "dist/emotion-react.umd.min.js",
+  "umd:main": "dist/bumbag-emotion-react.umd.min.js",
   "preconstruct": {
     "entrypoints": [
       "./index.js",
